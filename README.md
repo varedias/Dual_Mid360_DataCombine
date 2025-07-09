@@ -1,9 +1,9 @@
 # 基于ELF2开发板的Livox双雷达分体式扫描系统
 # 目录介绍
-NormalSet：livox ros driver config文件以及fast lio config 文件
-shell ： 自启动脚本
-config： 代码外参
-launch： 启动脚本
+NormalSet：livox ros driver config文件以及fast lio config 文件  
+shell ： 自启动脚本  
+config： 代码外参  
+launch： 启动脚本  
 
 # 双Mid360激光雷达数据融合
 
