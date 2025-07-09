@@ -1,9 +1,13 @@
+# 基于ELF2开发板的Livox双雷达分体式扫描系统
 # 目录介绍
-
+NormalSet：livox ros driver config文件以及fast lio config 文件
+shell ： 自启动脚本
+config： 代码外参
+launch： 启动脚本
 
 # 双Mid360激光雷达数据融合
 
-这是一个ROS 2功能包，用于融合两个Livox Mid-360激光雷达传感器的点云数据并同步IMU数据。
+本仓库主要存储双激光雷达节点融合功能包
 
 ## 概述
 
@@ -15,46 +19,26 @@
 
 ## 系统要求
 
-- ROS 2 (在Humble版本上测试)
+- ROS 2 Humble
 - Livox ROS Driver 2
+- Livox SDK2  
+- Fast Lio  
 - PCL (点云库)
 - Eigen3
 
 ## 编译
-
-```bash
-colcon build --packages-select merge_cloud
-```
+ mkdir build   
+ cd build   
+ cmake ..  
+ make 
 
 ## 使用方法
 
-1. 在`config/merge_config.yaml`中配置变换参数
-2. 启动节点：
-```bash
-ros2 launch merge_cloud launch.py
-```
+1. 在`config/merge_config.yaml`中配置变换对应的外参参数，外参标定可以使用Livox Viewer  
+2. 将Combine.cpp节点的IP地址更换为对应的IP地址  
+3. 将NormalSet里面的config中有涉及到IP地址的更换为自己设备的IP  
+4. 启动节点：
 
-## 配置
-
-两个激光雷达传感器的标定参数可以在`config/merge_config.yaml`中配置：
-
-```yaml
-lidar1:
-  roll: 1.5708       # 90度
-  pitch: -1.5708     # -90度
-  yaw: 1.5708        # 90度
-  tx: 0.11
-  ty: 0.0
-  tz: 0.0
-
-lidar2:
-  roll: 0.0
-  pitch: -1.5708
-  yaw: 0.0
-  tx: 0.0
-  ty: 0.0
-  tz: 0.0
-```
 
 ## 话题
 
@@ -67,6 +51,4 @@ lidar2:
 - `/merged_cloud` (livox_ros_driver2/msg/CustomMsg) - 融合后的点云
 - `/cloud_registered_body/imu` (sensor_msgs/msg/Imu) - 变换后的IMU数据
 
-## 许可证
 
-待添加许可证信息
