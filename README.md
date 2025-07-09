@@ -51,8 +51,8 @@ launch： 启动脚本
 - `/merged_cloud` (livox_ros_driver2/msg/CustomMsg) - 融合后的点云
 - `/cloud_registered_body/imu` (sensor_msgs/msg/Imu) - 变换后的IMU数据
 
-![Fast LIO 建模示意图](./normalSet/1.jpg)
-![BIM系统运行示意图](./normalSet/2.png)
+![Fast LIO 建模示意图](./NormalSet/1.jpg)
+![BIM系统运行示意图](./NormalSet/2.png)
 
 
 
