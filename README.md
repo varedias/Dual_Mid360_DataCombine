@@ -1,45 +1,45 @@
-# Dual Mid360 Data Combine
+# 双Mid360激光雷达数据融合
 
-This ROS 2 package merges point clouds from two Livox Mid-360 LiDAR sensors with synchronized IMU data.
+这个ROS 2包用于融合两个Livox Mid-360激光雷达传感器的点云数据，并同步IMU数据。
 
-## Overview
+## 概述
 
-This package provides a ROS 2 node that:
-- Subscribes to two Livox Mid-360 LiDAR sensors
-- Synchronizes point clouds from both sensors based on timestamps
-- Applies coordinate transformations to merge the point clouds
-- Publishes the merged point cloud and synchronized IMU data
+这个包提供了一个ROS 2节点，具有以下功能：
+- 订阅两个Livox Mid-360激光雷达传感器的数据
+- 基于时间戳同步两个传感器的点云数据
+- 应用坐标变换来融合点云
+- 发布融合后的点云和同步的IMU数据
 
-## Prerequisites
+## 依赖项
 
-- ROS 2 (tested with Humble)
+- ROS 2 (已在Humble版本测试)
 - Livox ROS Driver 2
-- PCL (Point Cloud Library)
+- PCL (点云库)
 - Eigen3
 
-## Building
+## 构建
 
 ```bash
 colcon build --packages-select merge_cloud
 ```
 
-## Usage
+## 使用方法
 
-1. Configure the transformation parameters in `config/merge_config.yaml`
-2. Launch the node:
+1. 在`config/merge_config.yaml`中配置变换参数
+2. 启动节点：
 ```bash
 ros2 launch merge_cloud launch.py
 ```
 
-## Configuration
+## 配置
 
-The calibration parameters for both LiDAR sensors can be configured in `config/merge_config.yaml`:
+两个激光雷达传感器的标定参数可以在`config/merge_config.yaml`中配置：
 
 ```yaml
 lidar1:
-  roll: 1.5708       # 90 degrees
-  pitch: -1.5708     # -90 degrees
-  yaw: 1.5708        # 90 degrees
+  roll: 1.5708       # 90度
+  pitch: -1.5708     # -90度
+  yaw: 1.5708        # 90度
   tx: 0.11
   ty: 0.0
   tz: 0.0
@@ -53,17 +53,17 @@ lidar2:
   tz: 0.0
 ```
 
-## Topics
+## 话题
 
-### Subscribed Topics
-- `/livox/lidar_192_168_1_151` (livox_ros_driver2/msg/CustomMsg) - First LiDAR sensor
-- `/livox/lidar_192_168_1_3` (livox_ros_driver2/msg/CustomMsg) - Second LiDAR sensor
-- `/livox/imu_192_168_1_151` (sensor_msgs/msg/Imu) - IMU data
+### 订阅的话题
+- `/livox/lidar_192_168_1_151` (livox_ros_driver2/msg/CustomMsg) - 第一个激光雷达传感器
+- `/livox/lidar_192_168_1_3` (livox_ros_driver2/msg/CustomMsg) - 第二个激光雷达传感器
+- `/livox/imu_192_168_1_151` (sensor_msgs/msg/Imu) - IMU数据
 
-### Published Topics
-- `/merged_cloud` (livox_ros_driver2/msg/CustomMsg) - Merged point cloud
-- `/cloud_registered_body/imu` (sensor_msgs/msg/Imu) - Transformed IMU data
+### 发布的话题
+- `/merged_cloud` (livox_ros_driver2/msg/CustomMsg) - 融合后的点云
+- `/cloud_registered_body/imu` (sensor_msgs/msg/Imu) - 变换后的IMU数据
 
-## License
+## 许可证
 
-TODO: Add license information
+待添加许可证信息
